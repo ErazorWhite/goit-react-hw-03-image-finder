@@ -50,6 +50,7 @@ export class App extends Component {
       );
     } catch (error) {
       console.log(error);
+      this.setState({ error });
     } finally {
       this.setState({ isLoading: false });
     }
@@ -68,16 +69,16 @@ export class App extends Component {
 
   render() {
     const { pictures, isLoading } = this.state;
-    const { canLoadMore } = this;
+    const { canLoadMore, getPictures, handleLoadMoreClick } = this;
 
     return (
       <StyledAppContainer>
         <ToastContainer />
-        <SearchBar onSubmit={this.getPictures} />
+        <SearchBar onSubmit={getPictures} />
         <ImageGallery pictures={pictures} />
         {isLoading && <Loader count={api.perPage} />}
         {canLoadMore() && !isLoading && pictures.length > 0 && (
-          <Button onClick={this.handleLoadMoreClick} />
+          <Button onClick={handleLoadMoreClick} />
         )}
       </StyledAppContainer>
     );
