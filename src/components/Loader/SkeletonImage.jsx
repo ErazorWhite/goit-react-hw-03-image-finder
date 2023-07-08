@@ -18,7 +18,7 @@ export const Loader = ({ count }) => {
 };
 
 Loader.propTypes = {
-  count: PropTypes.string.isRequired,
+  count: PropTypes.number.isRequired,
 };
 
 export const Skeleton = props => (

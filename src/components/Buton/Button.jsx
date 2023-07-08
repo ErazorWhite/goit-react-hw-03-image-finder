@@ -10,5 +10,5 @@ export const Button = ({ onClick }) => {
 };
 
 Button.propTypes = {
-  onclick: PropTypes.func.isRequired
-}
+  onClick: PropTypes.func.isRequired,
+};
