@@ -4,8 +4,9 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Button } from './Buton/Button';
 import { SearchBar } from './SearchBar/SearchBar';
 import { PixabayAPI } from 'services/PixabayAPI';
-import { Notify } from 'notiflix';
 import { Loader } from './Loader/SkeletonImage';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const api = new PixabayAPI();
 api.perPage = 12;
@@ -30,7 +31,7 @@ export class App extends Component {
         if (canLoadMore()) {
           api.page++;
         } else {
-          Notify.info("We're out of pictures, please try another search");
+          toast("We're out of pictures, please try another search");
           return;
         }
       }
@@ -62,7 +63,7 @@ export class App extends Component {
 
   imagesNotFoundCheck = () => {
     if (this.state.pictures.length <= 0)
-      Notify.warning("We didn't find the pictures you are looking for :(");
+      toast("We didn't find the pictures you are looking for :(");
   };
 
   render() {
@@ -71,6 +72,7 @@ export class App extends Component {
 
     return (
       <StyledAppContainer>
+        <ToastContainer />
         <SearchBar onSubmit={this.getPictures} />
         <ImageGallery pictures={pictures} />
         {isLoading && <Loader count={api.perPage} />}

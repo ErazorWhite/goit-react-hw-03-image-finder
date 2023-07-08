@@ -2,6 +2,7 @@ import ContentLoader from 'react-content-loader';
 import { StyledUl } from 'components/ImageGallery/ImageGallery.styled';
 import { StyledLi } from 'components/ImageGalleryItem/ImageGalleryItem.styled';
 import scss from './SkeletomImage.module.scss';
+import PropTypes from 'prop-types';
 
 export const Loader = ({ count }) => {
   const skeletonArray = Array.from({ length: count });
@@ -14,6 +15,10 @@ export const Loader = ({ count }) => {
       ))}
     </StyledUl>
   );
+};
+
+Loader.propTypes = {
+  count: PropTypes.string.isRequired,
 };
 
 export const Skeleton = props => (
