@@ -14,9 +14,9 @@ let searchValidationSchema = Yup.object().shape({
 });
 
 export const SearchBar = ({ onSubmit }) => {
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = (values, { setSubmitting }) => {
     onSubmit(values);
-    actions.setSubmitting(false);
+    setSubmitting(false);
   };
 
   return (

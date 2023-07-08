@@ -14,13 +14,14 @@ export class ImageGalleryItem extends Component {
   render() {
     const { imageSrc, imageAlt } = this.props;
     const { isModalOpen } = this.state;
+    const { openModal, closeModal } = this;
 
     return (
       <>
-        <StyledLi onClick={this.openModal}>
+        <StyledLi onClick={openModal}>
           <StyledImg src={imageSrc} alt={imageAlt} />
         </StyledLi>
-        {isModalOpen && <Modal closeModal={this.closeModal} src={imageSrc} alt={imageAlt} />}
+        {isModalOpen && <Modal closeModal={closeModal} src={imageSrc} alt={imageAlt} />}
       </>
     );
   }
