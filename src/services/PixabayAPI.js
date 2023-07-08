@@ -45,6 +45,9 @@ export class PixabayAPI {
   set query(newQuery) {
     this.#query = newQuery;
   }
+  get query() {
+    return this.#query;
+  }
   set page(newPage) {
     this.#curPage = newPage;
   }

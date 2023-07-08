@@ -1,18 +1,23 @@
 import { ImageGalleryItem } from '../ImageGalleryItem/ImageGalleryItem';
+import { StyledUl } from './ImageGallery.styled';
 import PropTypes from 'prop-types';
 
 export const ImageGallery = ({ pictures }) => {
   return (
-    <ul>
-      {pictures.map(picture => {
-        console.log('picture: ', picture);
+    <StyledUl>
+      {pictures.map(({ id, webformatURL, tags }) => {
         return (
-          <ImageGallery
-            imageSrc={picture.pageUrl}
-            imageAlt={picture.tags}
-          ></ImageGallery>
+          <ImageGalleryItem
+            key={id}
+            imageSrc={webformatURL}
+            imageAlt={tags}
+          ></ImageGalleryItem>
         );
       })}
-    </ul>
+    </StyledUl>
   );
+};
+
+ImageGallery.propTypes = {
+  pictures: PropTypes.array.isRequired,
 };

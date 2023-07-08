@@ -1,16 +1,27 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { AiOutlineSearch } from 'react-icons/ai';
 import { StyledHeader } from './SearchBar.styled';
+import { Formik, ErrorMessage } from 'formik';
+
+import {
+  StyledForm,
+  StyledSearchFormButton,
+  StyledSearchFormInput,
+} from './SearchBar.styled';
+
 import * as Yup from 'yup';
+
 import PropTypes from 'prop-types';
 
 let searchValidationSchema = Yup.object().shape({
   searchQuery: Yup.string().required('Required!'),
 });
 
-export const SearchBar = ({onSubmit}) => {
-  const handleSubmit = values => {
+export const SearchBar = ({ onSubmit }) => {
+  const handleSubmit = (values, actions) => {
     onSubmit(values);
+    actions.setSubmitting(false);
   };
+
   return (
     <StyledHeader>
       <Formik
@@ -18,20 +29,22 @@ export const SearchBar = ({onSubmit}) => {
         validationSchema={searchValidationSchema}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <button type="submit">
-            <span>Search</span>
-          </button>
+        {({ isSubmitting }) => (
+          <StyledForm>
+            <StyledSearchFormButton type="submit" disabled={isSubmitting}>
+              <AiOutlineSearch style={{ width: 28, height: 28 }} />
+            </StyledSearchFormButton>
 
-          <Field
-            type="text"
-            autoComplete="off"
-            autoFocus
-            name="searchQuery"
-            placeholder="Search images and photos"
-          />
-          <ErrorMessage name="searchQuery" component="div" />
-        </Form>
+            <StyledSearchFormInput
+              type="text"
+              autoComplete="off"
+              autoFocus
+              name="searchQuery"
+              placeholder="Search images and photos"
+            />
+            <ErrorMessage name="searchQuery" component="div" />
+          </StyledForm>
+        )}
       </Formik>
     </StyledHeader>
   );
