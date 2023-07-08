@@ -1,15 +1,12 @@
 import { AiOutlineSearch } from 'react-icons/ai';
 import { StyledHeader } from './SearchBar.styled';
 import { Formik, ErrorMessage } from 'formik';
-
 import {
   StyledForm,
   StyledSearchFormButton,
   StyledSearchFormInput,
 } from './SearchBar.styled';
-
 import * as Yup from 'yup';
-
 import PropTypes from 'prop-types';
 
 let searchValidationSchema = Yup.object().shape({
@@ -42,7 +39,7 @@ export const SearchBar = ({ onSubmit }) => {
               name="searchQuery"
               placeholder="Search images and photos"
             />
-            <ErrorMessage name="searchQuery" component="div" />
+            <ErrorMessage style={{color:"red", marginRight: "5px"}} name="searchQuery" component="div" />
           </StyledForm>
         )}
       </Formik>
