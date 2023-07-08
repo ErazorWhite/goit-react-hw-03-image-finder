@@ -5,7 +5,7 @@ import { Button } from './Buton/Button';
 import { SearchBar } from './SearchBar/SearchBar';
 import { PixabayAPI } from 'services/PixabayAPI';
 import { Notify } from 'notiflix';
-import { Loader } from './SkeletonImage/SkeletonImage';
+import { Loader } from './Loader/SkeletonImage';
 
 const api = new PixabayAPI();
 api.perPage = 12;
@@ -62,13 +62,12 @@ export class App extends Component {
 
   imagesNotFoundCheck = () => {
     if (this.state.pictures.length <= 0)
-      Notify.warning("We didn't find the pictures you were looking for :(");
+      Notify.warning("We didn't find the pictures you are looking for :(");
   };
 
   render() {
     const { pictures, isLoading } = this.state;
     const { canLoadMore } = this;
-    const array = [1, 2, 3, 4, 5];
 
     return (
       <StyledAppContainer>
