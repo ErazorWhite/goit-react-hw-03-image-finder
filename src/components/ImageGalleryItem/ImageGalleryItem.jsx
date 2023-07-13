@@ -12,7 +12,7 @@ export class ImageGalleryItem extends Component {
   closeModal = () => this.setState({ isModalOpen: false });
 
   render() {
-    const { imageSrc, imageAlt } = this.props;
+    const { imageSrc, imageAlt, largeImageURL } = this.props;
     const { isModalOpen } = this.state;
     const { openModal, closeModal } = this;
 
@@ -21,7 +21,9 @@ export class ImageGalleryItem extends Component {
         <StyledLi onClick={openModal}>
           <StyledImg src={imageSrc} alt={imageAlt} />
         </StyledLi>
-        {isModalOpen && <Modal closeModal={closeModal} src={imageSrc} alt={imageAlt} />}
+        {isModalOpen && (
+          <Modal closeModal={closeModal} src={largeImageURL} alt={imageAlt} />
+        )}
       </>
     );
   }

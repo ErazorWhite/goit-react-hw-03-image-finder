@@ -5,13 +5,14 @@ import PropTypes from 'prop-types';
 export const ImageGallery = ({ pictures }) => {
   return (
     <StyledUl>
-      {pictures.map(({ id, webformatURL, tags }) => {
+      {pictures.map(({ id, webformatURL, tags, largeImageURL }) => {
         return (
           <ImageGalleryItem
             key={id}
             imageSrc={webformatURL}
+            largeImageURL={largeImageURL}
             imageAlt={tags}
-          ></ImageGalleryItem>
+          />
         );
       })}
     </StyledUl>
