@@ -27,11 +27,11 @@ export class App extends Component {
   }
 
   getQuery = ({ searchQuery }) => {
-    this.setState(prevState => {
-      if (prevState.searchQuery !== searchQuery) {
-        return { searchQuery, page: 1, pictures: [], totalImages: 0 };
-      }
-    });
+    if (this.state.searchQuery === searchQuery) {
+      toast("Try to enter something else!");
+      return;
+    }
+    this.setState({ searchQuery, page: 1, pictures: [], totalImages: 0 });
   };
 
   handleLoadMoreClick = () => {
